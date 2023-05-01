@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""the states veiws page"""
+"""the state veiws page"""
 from models.state import State
 from api.v1.views import app_views
 from flask import jsonify, abort, request
