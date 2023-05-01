@@ -86,3 +86,35 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+    def test_get(self):
+        """Test the get method"""
+        # Create a user instance
+        user = User(email="test@example.com", password="password")
+        self.storage.new(user)
+        self.storage.save()
+
+        # Retrieve the user instance from the database
+        user_from_db = self.storage.get(User, user.id)
+
+        # Verify that the retrieved instance matches the original instance
+        self.assertEqual(user, user_from_db)
+
+        # Delete the user instance from the database
+        self.storage.delete(user)
+
+    def test_count(self):
+        """Test the count method"""
+        # Create two user instances
+        user1 = User(email="test1@example.com", password="password")
+        user2 = User(email="test2@example.com", password="password")
+        self.storage.new(user1)
+        self.storage.new(user2)
+        self.storage.save()
+
+        # Verify that the count of user instances in the database matches the expected count
+        self.assertEqual(self.storage.count(User), 2)
+
+        # Delete the user instances from the database
+        self.storage.delete(user1)
+        self.storage.delete(user2)
