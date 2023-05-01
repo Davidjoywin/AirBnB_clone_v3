@@ -15,12 +15,12 @@ from sqlalchemy import text
 @app_views.route('/stats', methods=['GET'])
 def stats():
     counts = {
-            'amenities': storage.count(text('Amenity')),
-            'cities': storage.count(text('City')),
-            'places': storage.count(text('Place')),
-            'reviews': storage.count(text('Review')),
-            'states': storage.count(text('State')),
-            'users': storage.count(text('User'))
+            'amenities': storage.count(Amenity),
+            'cities': storage.count(City),
+            'places': storage.count(Place),
+            'reviews': storage.count(Review),
+            'states': storage.count(State),
+            'users': storage.count(User)
                                                                     }
     return jsonify(counts)
 
