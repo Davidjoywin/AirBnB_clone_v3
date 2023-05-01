@@ -24,6 +24,7 @@ def stats():
                                                                     }
     return jsonify(counts)
 
+
 @app_views.route('/status', methods=['GET'])
 def status():
     return jsonify({
